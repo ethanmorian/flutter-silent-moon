@@ -14,20 +14,20 @@ class AppRouter {
         builder: (BuildContext context, GoRouterState state) {
           return const AuthSelectionScreen();
         },
-        routes: <GoRoute>[
-          GoRoute(
-            path: '/signIn',
-            builder: (BuildContext context, GoRouterState state) {
-              return const SignInScreen();
-            },
-          ),
-          GoRoute(
-            path: '/signUp',
-            builder: (BuildContext context, GoRouterState state) {
-              return const SignUpScreen();
-            },
-          ),
-        ]
+      ),
+      GoRoute(
+        path: '/signIn',
+        name: 'signIn',
+        builder: (BuildContext context, GoRouterState state) {
+          return const SignInScreen();
+        },
+      ),
+      GoRoute(
+        path: '/signUp',
+        name: 'signUp',
+        builder: (BuildContext context, GoRouterState state) {
+          return const SignUpScreen();
+        },
       ),
     ],
   );

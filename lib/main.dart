@@ -15,10 +15,11 @@ class MyApp extends StatelessWidget {
       designSize: const Size(414, 896),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_ , __) {
+      builder: (_, __) {
         return MaterialApp.router(
           routerConfig: AppRouter.goRouter,
           debugShowCheckedModeBanner: false,
+          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
         );
       },
     );
