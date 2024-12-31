@@ -5,6 +5,7 @@ class ButtonWithText extends StatelessWidget {
   final VoidCallback onPressed;
   final Color foregroundColor;
   final Color backgroundColor;
+  final Widget? leading;
   final String buttonText;
   final double? sizedBoxHeight;
   final String? subText;
@@ -14,6 +15,7 @@ class ButtonWithText extends StatelessWidget {
     required this.onPressed,
     this.foregroundColor = const Color(0xFFF6F1FB),
     this.backgroundColor = const Color(0xFF8E97FD),
+    this.leading,
     required this.buttonText,
     this.sizedBoxHeight,
     this.subText,
@@ -38,28 +40,38 @@ class ButtonWithText extends StatelessWidget {
               ),
               // padding: EdgeInsets.zero,
             ),
-            child: Text(
-              buttonText,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 14.r,
-              ),
+            child: Stack(
+              children: [
+                if (leading != null)
+                  Positioned(
+                    top: 0,
+                    left: 20.w,
+                    bottom: 0,
+                    child: leading!,
+                  ),
+                Center(
+                  child: Text(
+                    buttonText,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.r,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        sizedBoxHeight != null
-            ? SizedBox(height: sizedBoxHeight)
-            : const SizedBox(),
-        subText != null
-            ? Text(
-                subText!,
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.r,
-                  color: subTextColor,
-                ),
-              )
-            : const SizedBox(),
+        if (sizedBoxHeight != null) SizedBox(height: sizedBoxHeight),
+        if (subText != null)
+          Text(
+            subText!,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 14.r,
+              color: subTextColor,
+            ),
+          ),
       ],
     );
   }
