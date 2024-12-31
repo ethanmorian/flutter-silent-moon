@@ -25,7 +25,7 @@ class AlreadyHaveAccount extends StatelessWidget {
             color: const Color(0xFFA1A4B2),
           ),
         ),
-        InkWell(
+        GestureDetector(
           onTap: () {
             final route = alreadyHaveAccount ? 'signIn' : 'signUp';
             context.pushNamed(route);

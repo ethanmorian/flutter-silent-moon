@@ -21,7 +21,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   bool _isPasswordVisible = false;
-  bool isLoading = false;
+  bool _isPrivacyAgreed = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -50,21 +51,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
             top: 133.47.h,
             left: 0,
             right: 0,
-            child: Column(
-              children: [
-                _buildMainText(),
-                SizedBox(height: 33.h),
-                _buildFacebookLoginButton(),
-                SizedBox(height: 20.h),
-                _buildGoogleLoginButton(),
-                SizedBox(height: 40.h),
-                _buildEmailLoginPrompt(),
-                SizedBox(height: 40.h),
-                _buildLoginForm(),
-                SizedBox(height: 40.h),
-                _buildSignInButton(context),
-                SizedBox(height: 104.58.h),
-              ],
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                children: [
+                  _buildMainText(),
+                  SizedBox(height: 33.h),
+                  _buildFacebookLoginButton(),
+                  SizedBox(height: 20.h),
+                  _buildGoogleLoginButton(),
+                  SizedBox(height: 40.h),
+                  _buildEmailLoginPrompt(),
+                  SizedBox(height: 40.h),
+                  _buildLoginForm(),
+                  SizedBox(height: 20.h),
+                  _buildPolicyCheck(context),
+                  SizedBox(height: 30.h),
+                  _buildSignInButton(context),
+                ],
+              ),
             ),
           ),
         ],
@@ -87,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Positioned(
       top: 50.w,
       left: 20.24.w,
-      child: InkWell(
+      child: GestureDetector(
         onTap: () => context.pop(),
         child: SvgPicture.asset(
           'assets/back_arrow.svg',
@@ -149,55 +154,106 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Widget _buildLoginForm() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            AppTextField(
-              controller: _nameController,
-              hintText: 'Name',
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              validator: Validator.validateName,
-            ),
-            SizedBox(height: 20.h),
-            AppTextField(
-              controller: _emailController,
-              hintText: 'Email address',
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              validator: Validator.validateEmail,
-            ),
-            SizedBox(height: 20.h),
-            AppTextField(
-              controller: _passwordController,
-              hintText: 'Password',
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _isPasswordVisible = !_isPasswordVisible;
-                  });
-                },
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          AppTextField(
+            controller: _nameController,
+            hintText: 'Name',
+            keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.next,
+            validator: Validator.validateName,
+          ),
+          SizedBox(height: 20.h),
+          AppTextField(
+            controller: _emailController,
+            hintText: 'Email address',
+            keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.next,
+            validator: Validator.validateEmail,
+          ),
+          SizedBox(height: 20.h),
+          AppTextField(
+            controller: _passwordController,
+            hintText: 'Password',
+            suffixIcon: IconButton(
+              icon: Icon(
+                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
               ),
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              obscureText: true,
-              validator: Validator.validatePassword,
+              onPressed: () {
+                setState(() {
+                  _isPasswordVisible = !_isPasswordVisible;
+                });
+              },
+            ),
+            keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.next,
+            obscureText: true,
+            validator: Validator.validatePassword,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPolicyCheck(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Text(
+              'I have read the ',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 14.r,
+                color: const Color(0xFFA1A4B2),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Text(
+                'Privacy Policy',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.r,
+                  color: const Color(0xFF8E97FD),
+                ),
+              ),
             ),
           ],
         ),
-      ),
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _isPrivacyAgreed = !_isPrivacyAgreed;
+                });
+              },
+              child: Icon(
+                _isPrivacyAgreed
+                    ? Icons.check_box_outlined
+                    : Icons.check_box_outline_blank,
+                color: const Color(0xFFA1A4B2),
+                size: 24.17.w,
+              ),
+            ),
+            SizedBox(width: 10.34.w),
+          ],
+        )
+      ],
     );
   }
 
   Widget _buildSignInButton(BuildContext context) {
     return ButtonWithText(
-      onPressed: () => context.pushNamed('logIn'),
+      onPressed: () {
+        if (_isPrivacyAgreed) {
+          context.pop();
+        }
+      },
       buttonText: 'GET STARTED',
       sizedBoxHeight: 20.h,
     );

@@ -86,7 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Positioned(
       top: 50.w,
       left: 20.24.w,
-      child: InkWell(
+      child: GestureDetector(
         onTap: () => context.pop(),
         child: SvgPicture.asset(
           'assets/back_arrow.svg',
