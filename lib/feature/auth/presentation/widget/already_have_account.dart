@@ -22,7 +22,7 @@ class AlreadyHaveAccount extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 14.r,
-            color: Color(0xFFA1A4B2),
+            color: const Color(0xFFA1A4B2),
           ),
         ),
         InkWell(
@@ -35,7 +35,7 @@ class AlreadyHaveAccount extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 14.r,
-              color: Color(0xFF8E97FD),
+              color: const Color(0xFF8E97FD),
             ),
           ),
         ),

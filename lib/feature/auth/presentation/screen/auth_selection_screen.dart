@@ -73,7 +73,7 @@ class AuthSelectionScreen extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 30.r,
-        color: Color(0xFF3F414E),
+        color: const Color(0xFF3F414E),
       ),
     );
   }
@@ -84,7 +84,7 @@ class AuthSelectionScreen extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 16.r,
-        color: Color(0xFFA1A4B2),
+        color: const Color(0xFFA1A4B2),
       ),
       textAlign: TextAlign.center,
     );
@@ -98,8 +98,6 @@ class AuthSelectionScreen extends StatelessWidget {
   }
 
   Widget _buildAlreadyHaveAccount(BuildContext context) {
-    return AlreadyHaveAccount(
-      alreadyHaveAccount: true,
-    );
+    return AlreadyHaveAccount(alreadyHaveAccount: true);
   }
 }
