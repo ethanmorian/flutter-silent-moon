@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
       onTap: () => context.go('/'),
       child: Scaffold(
         body: Center(
-          child: Text('Go /'),
+          child: Text('Home Go /'),
         ),
       ),
     );

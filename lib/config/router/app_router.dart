@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_silent_moon/feature/welcome/presentation/screen/welcome_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../feature/auth/presentation/screen/auth_selection_screen.dart';
@@ -28,6 +29,13 @@ class AppRouter {
         name: 'signUp',
         builder: (BuildContext context, GoRouterState state) {
           return const SignUpScreen();
+        },
+      ),
+      GoRoute(
+        path: '/welcome',
+        name: 'welcome',
+        builder: (BuildContext context, GoRouterState state) {
+          return const WelcomeScreen();
         },
       ),
       GoRoute(

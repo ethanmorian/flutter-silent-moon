@@ -188,7 +188,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget _buildSignInButton(BuildContext context) {
     return ButtonWithText(
-      onPressed: () => context.goNamed('home'),
+      onPressed: () => context.goNamed('welcome'),
       buttonText: 'LOG IN',
       sizedBoxHeight: 20.h,
       subText: 'Forgot Password?',
