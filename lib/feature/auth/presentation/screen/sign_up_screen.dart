@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/widget/button_with_text.dart';
-import '../../../util/validator.dart';
+import '../../util/validator.dart';
 import '../widget/app_text_field.dart';
 
 final _formKey = GlobalKey<FormState>();

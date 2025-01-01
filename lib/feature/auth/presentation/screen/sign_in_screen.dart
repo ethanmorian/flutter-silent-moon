@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_silent_moon/core/widget/button_with_text.dart';
 import 'package:flutter_silent_moon/feature/auth/presentation/widget/app_text_field.dart';
-import 'package:flutter_silent_moon/feature/util/validator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../util/validator.dart';
 import '../widget/already_have_account.dart';
 
 final _formKey = GlobalKey<FormState>();
